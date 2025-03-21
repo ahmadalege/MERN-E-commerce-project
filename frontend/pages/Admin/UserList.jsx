@@ -17,11 +17,6 @@ const UserList = () => {
   const [editableUsername, setEditableUsername] = useState("");
   const [editableUserEmail, setEditableUserEmail] = useState("");
 
-  console.log(users, "Users Data");
-  console.log(isLoading, "Loading Status");
-  console.log(error, "Error Info");
-  console.log("API Error:", error);
-
   useEffect(() => {
     refetch();
   }, [refetch]);
