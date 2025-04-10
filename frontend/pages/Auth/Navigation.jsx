@@ -13,6 +13,7 @@ import "./Navigation.css";
 import { useSelector, useDispatch } from "react-redux";
 import { useLogoutMutation } from "../../redux/api/usersApiSlice";
 import { logout } from "../../redux/features/auth/authSlice";
+import FavouriteCount from "../Products/FavouriteCount";
 
 const Navigation = () => {
   const { userInfo } = useSelector((state) => state.auth);
@@ -51,7 +52,7 @@ const Navigation = () => {
       style={{ zIndex: 9999 }}
       className={`${
         showSidebar ? "hidden" : "flex"
-      } xl:flex lg:flex md:hidden sm:hidden flex-col justify-between p-4 text-white bg-black w-[4%] hover:w-[15%] h-[100vh] fixed`}
+      } xl:flex lg:flex md:hidden sm:hidden flex-col justify-between p-4 text-white bg-black w-[4%] hover:w-[4%] h-[100vh] fixed`}
       id="navigation-container"
     >
       <div className="flex flex-col justify-center space-y-4">
@@ -71,20 +72,20 @@ const Navigation = () => {
           <span className="hidden nav-item-name mt-[3rem]">Shop </span>
         </Link>
 
-        <Link
-          to="/Cart"
-          className="flex items-center transition-transform transform hover:translate-x-2"
-        >
-          <AiOutlineShoppingCart size={26} className="mr-2 mt-[3rem]" />
-          <span className="hidden nav-item-name mt-[3rem]">Cart </span>
+        <Link to="/Cart" className="flex relative">
+          <div className="flex items-center transition-transform transform hover:translate-x-2">
+            <AiOutlineShoppingCart size={26} className="mr-2 mt-[3rem]" />
+            <span className="hidden nav-item-name mt-[3rem]">Cart </span>
+          </div>
         </Link>
 
-        <Link
-          to="/favourite"
-          className="flex items-center transition-transform transform hover:translate-x-2"
-        >
-          <FaHeart size={26} className="mr-2 mt-[3rem]" />
-          <span className="hidden nav-item-name mt-[3rem]">Favourites </span>
+        <Link to="/favourites" className="flex relative">
+          <div className="flex items-center transition-transform transform hover:translate-x-2">
+            <FaHeart size={20} className="mr-2 mt-[3rem]" />
+            <span className="hidden nav-item-name mt-[3rem]">Favourites </span>
+            {""}
+            <FavouriteCount />
+          </div>
         </Link>
       </div>
 
@@ -134,7 +135,7 @@ const Navigation = () => {
                     Dashboard
                   </Link>
                   <Link
-                    to="/admin/productlist"
+                    to="/admin/allproductslist"
                     className="block px-4 py-2 hover:bg-gray-400"
                   >
                     Products

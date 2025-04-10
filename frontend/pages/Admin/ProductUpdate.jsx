@@ -42,7 +42,7 @@ const ProductUpdate = () => {
       setCategory(productData.categories?._id);
       setQuantity(productData.quantity);
       setBrand(productData.brand);
-      setStock(productData.countInStock);
+      setStock(productData.stock);
       setImage(productData.image);
     }
   }, [productData]);
@@ -59,26 +59,27 @@ const ProductUpdate = () => {
     }
   };
 
-  const handleUpdate = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
-      const updatedData = {
-        image,
-        name,
-        description,
-        price,
-        category,
-        quantity,
-        brand,
-        countInStock: stock,
-      };
+      const formData = new FormData();
+      formData.append("image", image);
+      formData.append("name", name);
+      formData.append("description", description);
+      formData.append("price", price);
+      formData.append("category", category);
+      formData.append("quantity", quantity);
+      formData.append("brand", brand);
+      formData.append("countInStock", stock);
 
-      await updateProduct({
-        productId: params._id,
-        productData: updatedData,
-      }).unwrap();
+      const { data } = await updateProduct({ productId: params._id, formData });
 
-      toast.success(`Product successfully updated`);
+      if (data.error) {
+        toast.error("Product update failed. ");
+      } else {
+        toast.success(`Product successfully updated`);
+      }
       navigate("/admin/allproductslist");
     } catch (error) {
       console.error(error);
@@ -213,7 +214,7 @@ const ProductUpdate = () => {
 
             <div>
               <button
-                onClick={handleUpdate}
+                onClick={handleSubmit}
                 className="py-4 px-10 mt-5 rounded-lg text-lg font-bold bg-green-600 mr-6"
               >
                 Update
