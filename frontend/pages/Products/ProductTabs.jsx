@@ -106,7 +106,12 @@ const ProductTabs = ({
               </form>
             ) : (
               <p>
-                Please <Link to={"/login"}> sign in</Link> to write a review
+                Please{" "}
+                <Link to={"/login"}>
+                  {" "}
+                  <span className="text-pink-500">sign in</span>
+                </Link>{" "}
+                to write a review
               </p>
             )}
           </div>
