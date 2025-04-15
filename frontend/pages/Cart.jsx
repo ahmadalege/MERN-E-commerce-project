@@ -58,6 +58,7 @@ const Cart = () => {
                   </div>
                   <div className="w-24">
                     <select
+                      value={item.qty}
                       onChange={(e) =>
                         addToCartHandler(item, Number(e.target.value))
                       }

@@ -21,9 +21,9 @@ const AdminMenu = () => {
           <FaTimes color="white" />
         ) : (
           <>
-            <div className="w-6 h-0.5 bg-white my-1 "></div>
-            <div className="w-6 h-0.5 bg-white my-1 "></div>
-            <div className="w-6 h-0.5 bg-white my-1 "></div>
+            <div className="w-6 h-0.5 bg-gray-500 my-1 "></div>
+            <div className="w-6 h-0.5 bg-gray-500 my-1 "></div>
+            <div className="w-6 h-0.5 bg-gray-500 my-1 "></div>
           </>
         )}
       </button>
